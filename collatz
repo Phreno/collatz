@@ -1,0 +1,20 @@
+#!/usr/bin/env coffee
+
+# Développeur ....: K3rn€l_P4n1K
+# Description ....: collatw - 1.0 - samedi 15 avril 2017, 21:54:18 (UTC+0200)
+# Plateformes ....: Ubuntu
+
+# Fonctionnalité .: Implémente la fonction de la conjecture de collatz
+# Intention ......: Voir quels sont les patterns qui sortent sur les nombres premiers
+# Remarque .......: N/A
+
+collatz = (number)->
+  console.log number
+  result=[]
+  while number > 1
+    result.push number
+    if number % 2 is 0 then number /= 2
+    else number = 3*number + 1
+  console.log result
+
+collatz process.argv[2]

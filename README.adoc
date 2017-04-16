@@ -18,7 +18,7 @@ Ce script à pour but d'implémenter le comportement suivant.
 . Tant que ce nombre n'a pas déjà été rencontré
 .. Si ce nombre est pair alors on le divise par 2
 .. Si ce nombre est impair alors on le multiplie par 3 puis on lui ajoute 1
-.. Fin tant que
+. Fin tant que
 
 .Intention
 Voir ce qui se passe lorsqu'on nourrit ce comportement avec des nombres premiers.
@@ -45,7 +45,7 @@ collatz 7
 
 .Résultat
 ----
-7;22;11;34;17;52;26;13;40;20;10;5;16;8;4;2;1
+7;22;11;34;17;52;26;13;40;20;10;5;16;8;4;2;1;#4
 ----
 
 # Commentaires

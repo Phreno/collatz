@@ -1,0 +1,25 @@
+{
+  "name": "collatz",
+  "version": "1.0.0",
+  "description": "Implémente la fonction utilisée pour satisfaire l'hypothèse de collatz",
+  "main": "collatz",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phreno/collatz.git"
+  },
+  "keywords": [
+    "math",
+    "collatz"
+  ],
+  "author": "K3rn€l P4n1k",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Phreno/collatz/issues"
+  },
+  "homepage": "https://github.com/Phreno/collatz#readme",
+  "dependencies": {
+  }
+}

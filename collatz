@@ -9,12 +9,12 @@
 # Remarque .......: N/A
 
 collatz = (number)->
-  console.log number
   result=[]
   while number > 1
     result.push number
     if number % 2 is 0 then number /= 2
     else number = 3*number + 1
-  console.log result
+  result.push number
+  console.log(result.join ";")
 
 collatz process.argv[2]

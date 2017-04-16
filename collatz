@@ -1,20 +1,28 @@
 #!/usr/bin/env coffee
 
 # Développeur ....: K3rn€l_P4n1K
-# Description ....: collatw - 1.0 - samedi 15 avril 2017, 21:54:18 (UTC+0200)
-# Plateformes ....: Ubuntu
+# Nom ............: collatz
+# Description ....: applique sur un nombre l'hypothèse de collatz
+# Version ........: 1.0
+# Date ...........: dimanche 16 avril 2017, 15:08:46 (UTC+0200)
+# Dépendances ....: CoffeeScript version 1.10.0
 
-# Fonctionnalité .: Implémente la fonction de la conjecture de collatz
-# Intention ......: Voir quels sont les patterns qui sortent sur les nombres premiers
+# Fonctionnalité .: boucle jusqu'à tomber sur un nombre déjà rencontré
+# Intention ......: voir les étapes appliquées sur des nombres premiers
 # Remarque .......: N/A
+MAX_STEP=1000000
 
-collatz = (number)->
+collatz = (input)->
+  number=input
   result=[]
-  while number > 1
+  while result.indexOf(number) is -1
     result.push number
     if number % 2 is 0 then number /= 2
     else number = 3*number + 1
-  result.push number
+    if result.length > MAX_STEP
+      number="[#{MAX_STEP}+]"
+      break
+  result.push "##{number}"
   console.log(result.join ";")
 
 collatz process.argv[2]

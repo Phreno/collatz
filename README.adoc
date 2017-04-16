@@ -2,7 +2,7 @@
 [format="csv"]
 |======================
 Rédacteur, K3rn€l P4n1k
-Date, 01/01/1970
+Date, dimanche 16 avril 2017, 12:36:03 (UTC+0200)
 État, En développement
 |======================
 

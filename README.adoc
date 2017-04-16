@@ -15,13 +15,13 @@ Documente l'usage du script `collatz`
 Ce script à pour but d'implémenter le comportement suivant.
 
 . Prend un nombre
-. Tant que ce nombre n'a pas déjà rencontré
+. Tant que ce nombre n'a pas déjà été rencontré
 .. Si ce nombre est pair alors on le divise par 2
 .. Si ce nombre est impair alors on le multiplie par 3 puis on lui ajoute 1
 .. Fin tant que
 
 .Intention
-Ce script à été implémanté pour voir ce qui se passe lorsqu'on le nourrit avec des nombres premiers.
+Voir ce qui se passe lorsqu'on nourrit ce comportement avec des nombres premiers.
 
 # Usage
 

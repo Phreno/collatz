@@ -31,12 +31,6 @@ Voir ce qui se passe lorsqu'on nourrit ce comportement avec des nombres premiers
 npm install
 ----
 
-.Signature
-[source, bash]
-----
-collatz -i <nombre>
-----
-
 .Arguments
 ----
   Usage: collatz -s <seed> [options]

@@ -26,7 +26,10 @@ Voir ce qui se passe lorsqu'on nourrit ce comportement avec des nombres premiers
 # Usage
 
 .Installation
+[source, bash]
+----
 npm install
+----
 
 .Signature
 [source, bash]

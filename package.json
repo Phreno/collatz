@@ -21,5 +21,6 @@
   },
   "homepage": "https://github.com/Phreno/collatz#readme",
   "dependencies": {
+    "commander": "^2.9.0"
   }
 }

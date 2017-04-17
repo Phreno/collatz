@@ -49,7 +49,7 @@ npm install
 .Exemple avec le nombre 7
 [source, bash]
 ----
-collatz -i 7
+collatz -s 7
 ----
 
 .Résultat

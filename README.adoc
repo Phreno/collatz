@@ -38,15 +38,14 @@ collatz -i <nombre>
 ----
 
 .Arguments
-[source, bash]
 ----
-  Usage: collatz -i <input> [options]
+  Usage: collatz -s <seed> [options]
 
   Options:
 
     -h, --help             output usage information
     -V, --version          output the version number
-    -i, --input [int]      Nombre à décomposer
+    -s, --seed [int]       Nombre à décomposer [int]
     -m, --maxSteps [int]   Nombre d'étapes maximum [5000]
     -s, --slope [int]      Coefficiant directeur [3]
     -i, --intercept [int]  Ordonnées à l'origine [1]

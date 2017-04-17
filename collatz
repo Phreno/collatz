@@ -42,13 +42,16 @@ DEFAULT=
 # ===========================
 VENDOR = { program: require 'commander' }
 VENDOR.program.version 'α'
-VENDOR.program.usage '-i <input> [options]'
-VENDOR.program.option '-i, --input [int]', "Nombre à décomposer"
+VENDOR.program.usage '-s <seed> [options]'
+VENDOR.program.option '-s, --seed [int]', "Nombre à décomposer [int]"
 VENDOR.program.option '-m, --maxSteps [int]', "Nombre d'étapes maximum [#{DEFAULT.maxSteps}]", DEFAULT.maxSteps
 VENDOR.program.option '-s, --slope [int]', "Coefficiant directeur [#{DEFAULT.slope}]", DEFAULT.slope
 VENDOR.program.option '-i, --intercept [int]', "Ordonnées à l'origine [#{DEFAULT.intercept}]", DEFAULT.intercept
 VENDOR.program.option '-d, --divider [int]', "Diviseur [#{DEFAULT.divider}]", DEFAULT.divider
 VENDOR.program.parse process.argv
+
+if !VENDOR.program.seed
+  VENDOR.program.help()
 
 # ===================================
 # Contexte d'exécution de la fonction
@@ -109,4 +112,4 @@ collatz = (number) ->
 # Lancement de la routine
 # =======================
 
-collatz VENDOR.program.input
+collatz VENDOR.program.seed

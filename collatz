@@ -28,24 +28,85 @@
 # You should have received a copy of the GNU General Public License
 # along with collatz. If not, see <http://www.gnu.org/licenses/>.
 
-CONFIG=
-  maxSteps: 1000000
+# ===================================
+# Déclaration des valeurs par défault
+# ===================================
+DEFAULT=
+  maxSteps: 5000
   slope:3
   intercept:1
   divider:2
 
-collatz = (input)->
-  number=input
-  result=[]
-  while result.indexOf(number) is -1
-    result.push number
-    if number % CONFIG.divider is 0 then number /= CONFIG.divider
-    else number = CONFIG.slope * number + CONFIG.intercept
-    if result.length > CONFIG.maxSteps
-      console.log "/!\\ #{CONFIG.maxSteps}+ steps"
-      number="[#{CONFIG.maxSteps}+]"
-      break
-  result.push "##{number}"
-  console.log(result.join ";")
+# ===========================
+# Configuration de la routine
+# ===========================
+VENDOR = { program: require 'commander' }
+VENDOR.program.version 'α'
+VENDOR.program.usage '-i <input> [options]'
+VENDOR.program.option '-i, --input [int]', "Nombre à décomposer"
+VENDOR.program.option '-m, --maxSteps [int]', "Nombre d'étapes maximum [#{DEFAULT.maxSteps}]", DEFAULT.maxSteps
+VENDOR.program.option '-s, --slope [int]', "Coefficiant directeur [#{DEFAULT.slope}]", DEFAULT.slope
+VENDOR.program.option '-i, --intercept [int]', "Ordonnées à l'origine [#{DEFAULT.intercept}]", DEFAULT.intercept
+VENDOR.program.option '-d, --divider [int]', "Diviseur [#{DEFAULT.divider}]", DEFAULT.divider
+VENDOR.program.parse process.argv
 
-collatz process.argv[2]
+# ===================================
+# Contexte d'exécution de la fonction
+# ===================================
+CONTEXT =
+  # Historique des résultats rencontrés lors de la décomposition du nombre
+  iterations:[]
+
+  # Fonction à appliquer lorsque le nombre est pair
+  evenFunction:(x)-> x / VENDOR.program.divider
+
+  # Foncction à appliquer lorsque le nombre est impair
+  oddFunction:(x)-> VENDOR.program.slope * x + VENDOR.program.intercept
+
+  # Vérifie l'unicité des résultats rencontrés
+  noLoop: (history, x)-> history.indexOf(x) is -1
+
+  # Historise les étapes de décomposition
+  memorize: (history, x)-> history.push x
+
+  # Vérifie la limite des étapes de décomposition
+  outOfLimit: (history)-> history.length > VENDOR.program.maxSteps
+
+  # Indique le dépassement de la limite
+  terminator:"[#{VENDOR.program.maxSteps}+]"
+
+  # Préviens l'utilisateur que la limite est rencontrée
+  warnLimit: ()-> console.log "/!\\ #{VENDOR.program.maxSteps}+ steps"
+
+  # Calcul la valeur de la prochaine itération
+  getNext: (x, oddFunc, evenFunc)->
+    even = (x % 2) is 0
+    if even is true then x = evenFunc x
+    else x = oddFunc x
+
+  # Affiche le résultat f$inal
+  displayResult: (history)-> console.log history.join (";")
+
+# ============================================
+# Fonction implémantant l'hypothèse de collatz
+# ============================================
+collatz = (number) ->
+  iterate = (seed) ->
+    iteration = seed
+    while CONTEXT.noLoop( CONTEXT.iterations, iteration )
+      if CONTEXT.outOfLimit( CONTEXT.iterations )
+        CONTEXT.warnLimit()
+        iteration = CONTEXT.terminator
+        break
+      CONTEXT.memorize( CONTEXT.iterations, iteration )
+      iteration = CONTEXT.getNext( iteration, CONTEXT.oddFunction, CONTEXT.evenFunction )
+    iteration
+
+  CONTEXT.memorize( CONTEXT.iterations, "##{iterate number}" )
+  CONTEXT.displayResult(CONTEXT.iterations)
+
+# =======================
+# Lancement de la routine
+# =======================
+
+collatz VENDOR.program.input

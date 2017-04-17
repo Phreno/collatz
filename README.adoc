@@ -28,19 +28,29 @@ Voir ce qui se passe lorsqu'on nourrit ce comportement avec des nombres premiers
 .Signature
 [source, bash]
 ----
-collatz <nombre>
+collatz -i <nombre>
 ----
 
 .Arguments
-[format="csv"]
-|====
-*nombre*, Nombre dont on veut connaître l'évolution
-|====
+[source, bash]
+----
+  Usage: collatz -i <input> [options]
+
+  Options:
+
+    -h, --help             output usage information
+    -V, --version          output the version number
+    -i, --input [int]      Nombre à décomposer
+    -m, --maxSteps [int]   Nombre d'étapes maximum [5000]
+    -s, --slope [int]      Coefficiant directeur [3]
+    -i, --intercept [int]  Ordonnées à l'origine [1]
+    -d, --divider [int]    Diviseur [2]
+----
 
 .Exemple avec le nombre 7
 [source, bash]
 ----
-collatz 7
+collatz -i 7
 ----
 
 .Résultat

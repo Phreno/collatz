@@ -28,17 +28,22 @@
 # You should have received a copy of the GNU General Public License
 # along with collatz. If not, see <http://www.gnu.org/licenses/>.
 
-MAX_STEP=1000000
+CONFIG=
+  maxSteps: 1000000
+  slope:3
+  intercept:1
+  divider:2
 
 collatz = (input)->
   number=input
   result=[]
   while result.indexOf(number) is -1
     result.push number
-    if number % 2 is 0 then number /= 2
-    else number = 3*number + 1
-    if result.length > MAX_STEP
-      number="[#{MAX_STEP}+]"
+    if number % CONFIG.divider is 0 then number /= CONFIG.divider
+    else number = CONFIG.slope * number + CONFIG.intercept
+    if result.length > CONFIG.maxSteps
+      console.log "/!\\ #{CONFIG.maxSteps}+ steps"
+      number="[#{CONFIG.maxSteps}+]"
       break
   result.push "##{number}"
   console.log(result.join ";")
